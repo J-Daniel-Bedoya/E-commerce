@@ -1,52 +1,53 @@
 
-const loader =  document.getElementById('loaders');
+document.addEventListener( "DOMContentLoaded", () =>{
+    load()
+})
 
-document.addEventListener('DOMContentLoaded', () => {
-    load();
-} );
-
-/* =============================== Loader ============================= */
-function load() {
+/* =========== LOADER ========== */
+const loader = document.getElementById( "loader" )
+function load () {
     setTimeout(() => {
-        loader.classList.add('hide');
+        loader.classList.add( "hide" )
     }, 3000);
 }
 
-/*  ============================ Dark Mode ============================== */
+/* =========DARK MODE======== */
+const themeButton = document.getElementById( "theme-button" )
 
-const darkMode = document.getElementById('theme-button');
+themeButton.addEventListener( "click", () =>{
+    document.body.classList.toggle( "dark-theme" )
 
-darkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    if (document.body.classList.contains('bx-moon')) {
-        darkMode.classList.replace('bx-moon', 'bx-sun');
-    } else {
-        darkMode.classList.replace('bx-sun', 'bx-moon');
+    if( themeButton.classList.contains( "bx-moon" ) ){
+        themeButton.classList.replace( "bx-moon", "bx-sun" )
+    }else{
+        themeButton.classList.replace( "bx-sun", "bx-moon" )
     }
-} );
+})
 
-/*  ============================ Carrito ============================== */
 
-const carritoOpen = document.getElementById('cart-shop');
-const carritoClose = document.getElementById('close-cart');
-const carritoContainer = document.getElementById('cart-container');
+/*=======  CARRITO =========== */
+const cartOpen = document.getElementById( "cart-shop" )
+const cartClose = document.getElementById( "close-cart" )
+const cartContainer = document.getElementById( "cart-container" )
 
-carritoOpen.addEventListener('click', () => {
-    document.classList.remove('hide');
-} );
+cartOpen.addEventListener( "click", () => {
+    cartContainer.classList.remove( "hide" )
+})
 
-carritoClose.addEventListener('click', () => {
-    carritoContainer.classList.add('hide');
-} );
+cartClose.addEventListener( "click", () => {
+    cartContainer.classList.add( "hide" )
+})
 
-/*  ============================ Scroll ============================== */
 
-const header = document.getElementById('header');
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header.classList.add('scroll-header');
-  }else {
-    header.classList.remove('scroll-header');
-  }
-});
+/* ========SCROLL========= */
+const header = document.getElementById("header")
+
+window.addEventListener( "scroll", () =>{
+    if( window.scrollY >= 50 ){
+        header.classList.add("scroll-header")
+    }else{
+        header.classList.remove("scroll-header")
+    }
+})
+
