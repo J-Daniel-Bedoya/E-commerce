@@ -1,4 +1,4 @@
-@import url('./mediaqueries/320px.css');
+@import url(./mediaqueries/320px.css);
 
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
@@ -55,7 +55,7 @@ body{
 }
 
 main{
-  padding-top: 4rem;
+  padding-top: 30rem;
 }
 
 .loader{
@@ -87,23 +87,50 @@ main{
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 3;
 }
 
 .scroll-header{
   background-color: var(--container-color);
-  box-shadow: 0 1px 4px hsla(0, 4%, 15%, .10)
+  box-shadow: 0 1px 4px hsla(0, 4%, 15%, .10);
+  transition: right .3s linear;
 }
 
-.nav{
-  height: 3.5rem;
+
+.store{
+  height: 3.7rem;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: .5rem 1.5rem;
+  z-index: 3;
 }
-
+.store--tittle{
+  font-size: 16px;
+  width: 130px;
+  color: var(--title-color);
+}
+.bx{
+  color: var(--title-color);
+}
+.bxs{
+  color: #000;
+}
+.bxs1{
+  color: #fff;
+}
+.bxs2{
+  color: #fff;
+}
+.bxs3{
+  color: #000;
+}
+.bxs4{
+  color: #fff;
+}
 .nav--logo{
-  width: 2.5rem;
+  width: 2.6rem;
   fill: var(--first-color);
 }
 
@@ -115,7 +142,7 @@ main{
   top: 0;
   padding: 6rem 2rem 3rem 2rem;
   right: -100%;
-  transition: right .3s linear;
+  transition: right 9s linear;
 }
 .nav--menu__show{
   right: 0;

@@ -63,13 +63,62 @@
     gap: 40px;
 
   }
-  
-  .card{
-    width: 230px;
-    height: 300px;
-    border:  2px solid white;
+  .home__images{
+    position: absolute;
+    width: 256px;
+    height: 430px;
+    top: 0;
+    right: 0;
+    background-color: var(--first-color);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 30px;
   }
-
+  .img-home{
+    width: 260px;
+  }
+  .cards{
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card__img{
+    width: 200px;
+    height: 170px;
+    background-color: var(--card-color);
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card__info{
+    width: 200px;
+    height: 80px;
+    background-color: var(--container-color);
+    border-radius: 0 0 10px 10px;
+  }
+  .btn-add-cart{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--body-color);
+    color: var(--title-color);
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    top: -90px;
+    left: 145px;
+    border: none;
+    box-shadow: 0px 3px 10px  hsl(240, 10%, 8%);
+  }
+  .img-products{
+    width: 150px;
+  }
 }
 
 

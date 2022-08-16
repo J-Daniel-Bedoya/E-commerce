@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academlo Store</title>
-    <link rel="icon" href="./assets/images/favicon.png">
+    <link rel="icon" href="./assets/js/images/favicon.png">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -29,53 +29,56 @@
     </div>
     <header class="header" id="header">
       <nav class="nav">
-        <a href="#" class="nav--logo">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
-              <title>Academlo Logo</title>
-              <g>
+        <div class="store">
+          <a href="#" class="nav--logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
+                <title>Academlo Logo</title>
                 <g>
-                  <path
-                    d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
-                  </path>
+                  <g>
+                    <path
+                      d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+                    </path>
+                  </g>
                 </g>
-              </g>
-          </svg>
-        </a>
+            </svg>
+          </a>
+          <h2 class="store--tittle">STORE</h2>
 
-        <div class="nav--menu">
-          <ul class="nav--list"> 
-            <li class="nav--item">
-              <a href="#" class="nav--link">
-                Home
-              </a>
-            </li>
-            <li class="nav--item">
-              <a href="#" class="nav--link">
-                Productos
-              </a>
-            </li>
-          </ul>
-          <div class="nav--close">
-            <i class='bx bx-x'></i>
-          </div>
-        </div>
-
-        <div class="nav--btns">
-          <i class='bx bx-moon change-theme' id="theme-button"></i>
-
-          <div class="nav--cart" id="cart-shop">
-            <i class='bx bx-shopping-bag'></i>
-            <span id="cart-counter" class="counter">0</span>
-          </div>
-
-          <div class="nav--toggle" id="nav-toggle">
-            <i class='bx bx-grid-alt'></i>
-          </div>
-        </div>
-        <div class="cart--container hide" id="cart-container">
-          <div class="cart" id="cart">
-            <div class="nav--close" id="close-cart">
+          <div class="nav--menu">
+            <ul class="nav--list"> 
+              <li class="nav--item">
+                <a href="#" class="nav--link">
+                  Home
+                </a>
+              </li>
+              <li class="nav--item">
+                <a href="#" class="nav--link">
+                  Productos
+                </a>
+              </li>
+            </ul>
+            <div class="nav--close">
               <i class='bx bx-x'></i>
+            </div>
+          </div>
+
+          <div class="nav--btns">
+            <i class='bx bxs bxs1 bx-moon change-theme' id="theme-button"></i>
+
+            <div class="nav--cart" id="cart-shop">
+              <i class='bx bxs bxs2 bx-shopping-bag'></i>
+              <span id="cart-counter" class="counter bxs bxs3">0</span>
+            </div>
+
+            <div class="nav--toggle" id="nav-toggle">
+              <i class='bx bxs bxs4 bx-grid-alt'></i>
+            </div>
+          </div>
+          <div class="cart--container hide" id="cart-container">
+            <div class="cart" id="cart">
+              <div class="nav--close" id="close-cart">
+                <i class='bx bx-x'></i>
+              </div>
             </div>
           </div>
         </div>
@@ -87,7 +90,7 @@
       <section class="home" id="home">
         <div class="home__container">
           <div class="home__images">
-            <img class="img-home" src="assets/images/home.png" alt="" class="home__images">
+            <img class="img-home" src="./assets/js/images/home.png" alt="" class="home__images">
           </div>
           <div class="home__datos">
             <h1 class="home__titulo">New Sweatshirt <br> COLLECTIONS 2022</h1>
