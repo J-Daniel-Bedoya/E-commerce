@@ -22,7 +22,20 @@ themeButton.addEventListener( "click", () =>{
     }else{
         themeButton.classList.replace( "bx-sun", "bx-moon" )
     }
-})
+
+    if(document.body.classList.contains('dark-theme')){
+        localStorage.setItem('dark', 'true')
+    }else{
+        localStorage.setItem('dark', 'false')
+    }
+});
+if(localStorage.getItem('dark') == 'true'){
+    document.body.classList.add('dark-theme')
+    themeButton.classList.replace( "bx-moon", "bx-sun" )
+}else{
+    document.body.classList.remove('dark-theme')
+    themeButton.classList.replace( "bx-sun", "bx-moon" )
+}
 
 
 /*=======  CARRITO =========== */
@@ -50,4 +63,9 @@ window.addEventListener( "scroll", () =>{
         header.classList.remove("scroll-header")
     }
 })
+
+
+// ========== LOCALSTORAGE ===========
+
+
 
