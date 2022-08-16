@@ -1,6 +1,7 @@
 
 document.addEventListener( "DOMContentLoaded", () =>{
     load()
+    icorporarProductos();
 })
 
 /* =========== LOADER ========== */
@@ -65,7 +66,45 @@ window.addEventListener( "scroll", () =>{
 })
 
 
-// ========== LOCALSTORAGE ===========
+/* ==================== PRODUCTOS ==================== */
+const productos = [
+    {
+        nombre: "Buso Rojo", 
+        precio: "$ 14.00", 
+        img: './images/featured1.png',
+        id: 1, 
+    },
+                        
+    {
+        nombre: "Buso Negro", 
+        precio: "$ 15.00", 
+        img: './images/featured2.png',
+        id: 2, 
+    },
+                         
+    {
+        nombre: "Buso Blanco", 
+        precio: "$ 12.00", 
+        img: './images/featured3.png',
+        id: 3, 
+    },
+                   
+];
 
 
 
+const cardProductos= document.getElementById("productos__card sudaderas")
+
+function icorporarProductos(){
+    productos.forEach(products => {
+        const card = document.createElement("div")
+        card.classList.add("card")
+        card.innerHTML = `
+            <img src="${products.img}" alt="${products.nombre}">
+            <h2>${products.nombre}</h2>
+            <h3>${products.precio}</h3>
+            <button class="btn-add-cart" data-id="${products.id}">Agregar al carrito</button>
+        `
+        cardProductos.appendChild(card)
+    } )
+}

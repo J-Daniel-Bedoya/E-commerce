@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academlo Store</title>
+    <link rel="icon" href="./assets/images/favicon.png">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <!-- BODY -->
@@ -87,7 +87,7 @@
       <section class="home" id="home">
         <div class="home__container">
           <div class="home__images">
-            <img src="assets/images/home.png" alt="" class="home__images">
+            <img class="img-home" src="assets/images/home.png" alt="" class="home__images">
           </div>
           <div class="home__datos">
             <h1 class="home__titulo">New Sweatshirt <br> COLLECTIONS 2022</h1>
@@ -106,93 +106,54 @@
           </div>
         </div>
       </section>
+      <!-- PRODUCTOS -->
+      <section class="productos" id="productos">
+        <div class="productos__container">
+          <ul class="productos__filtrados">
+            <li class="productos__elemento producto__linea activa" data-filter="all">
+              <h3 class="productos__titulo">
+                Show All
+              </h3>
+              <span class="productos__stock">
+                show all products
+              </span>
+            </li>
+
+            <li class="productos__elemento producto__linea activa" data-filter=".hoodies">
+              <h3 class="productos__titulo">
+                Hoodies
+              </h3>
+              <span class="productos__stock">
+                3 products
+              </span>
+            </li>
+
+            <li class="productos__elemento producto__linea" data-filter=".shirts">
+              <h3 class="productos__titulo">
+                Shirts
+              </h3>
+              <span class="products__stock">
+                4 products
+              </span>
+            </li>
+
+            <li class="productos__elemento" data-filter=".sweatshirts">
+              <h3 class="productos__titulo">
+                Sweatshirts
+              </h3>
+              <span class="productos__stock">
+                4 products
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- CARD PRODUCTS -->
+        <div class="productos__card sudaderas" id="productos__card sudaderas">
+          
+        </div>
+      </section>
     </main>
-    <!-- PRODUCTOS -->
-    <section class="productos" id="productos">
-      <div class="productos__container">
-        <ul class="productos__filtrados">
-          <li class="productos__elemento producto__linea activa" data-filter="all">
-            <h3 class="productos__titulo">
-              Show All
-            </h3>
-            <span class="productos__stock">
-              show all products
-            </span>
-          </li>
-
-          <li class="productos__elemento producto__linea activa" data-filter=".hoodies">
-            <h3 class="productos__titulo">
-              Hoodies
-            </h3>
-            <span class="productos__stock">
-              3 products
-            </span>
-          </li>
-
-          <li class="productos__elemento producto__linea" data-filter=".shirts">
-            <h3 class="productos__titulo">
-              Shirts
-            </h3>
-            <span class="products__stock">
-              4 products
-            </span>
-          </li>
-
-          <li class="productos__elemento" data-filter=".sweatshirts">
-            <h3 class="productos__titulo">
-              Sweatshirts
-            </h3>
-            <span class="productos__stock">
-              4 products
-            </span>
-          </li>
-        </ul>
-
-        <div class="productos__contentenedor grid" id="productos__contentenedor">
-      <article class="productos__card sudaderas">
-      <div class="productos__estilo">
-        <img src="assets/images/featured1.png" alt="sudaderas" class="productos__images">
-      </div>
-
-      <div class="productos__dato">
-        <h2 class="productos__pricio">$14.00 <span class="productos__cantidad">| Stock: 10</span></h2>
-        <h3 class="productos__nombres">Hoodies</h3>
-
-        <button class="button productos__button" data-id="1">
-          <i class="agregar agregar-mas"></i>
-        </button>
-      </div>
-      </article>
-      <article class="productos__card sudaderas">
-      <div class="productos__estilo">
-        <img src="assets/images/featured2.png" alt="sudaderas" class="productos__images">
-      </div>
-
-      <div class="productos__dato">
-        <h2 class="productos__pricio">$24.00 <span class="productos__cantidad">| Stock: 15</span></h2>
-        <h3 class="productos__nombres">Shirts</h3>
-
-        <button class="button productos__button" data-id="2">
-          <i class="agregar agregar-mas"></i>
-        </button>
-      </div>
-      </article>
-      <article class="productos__sudaderas">
-      <div class="productos__estilo">
-        <img src="assets/images/featured3.png" alt="sudaderas" class="productos__images">
-      </div>
-
-      <div class="productos__dato">
-        <h2 class="productos__pricio">$24.00 <span class="productos__cantidad">| Stock: 20</span></h2>
-        <h3 class="productos__nombres">Sweatshirts</h3>
-
-        <button class="button productos__button" data-id="3">
-          <i class="agregar agregar-mas"></i>
-        </button>
-      </div>
-      </article></div>
-      </div>
-    </section>
     <!-- FOOTER -->
     <footer class="footer section">
       <div class="footer__container">
