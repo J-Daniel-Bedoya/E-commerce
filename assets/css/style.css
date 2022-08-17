@@ -21,7 +21,6 @@
   --body-font: 'Roboto', sans-serif;
 }
 
-
 *{
   margin: 0;
   padding: 0;
@@ -53,6 +52,7 @@ body{
   background-color: var(--body-color);
   font-family: var(--body-font);
   color: var(--text-color);
+  transition: .3s;
 }
 
 main{
@@ -163,11 +163,6 @@ main{
   display: flex;
   align-items: center;
   column-gap: 1rem;
-  color: var(--title-color);
-  cursor: pointer;
-}
-.bx-close{
-  color: var(--title-color);
 }
 
 .color--black{
@@ -220,11 +215,29 @@ main{
 }
 
 
-
 .items-carrito{
   background-color: #fff;
   width: 100px;
   height: 50px;
+}
+
+
+.cart--products{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.products--item{
+  width: 98%;
+  display: flex;
+
+}
+.item--img{
+  width: 50px;
 }
 
 @keyframes load{
