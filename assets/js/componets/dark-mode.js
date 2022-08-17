@@ -1,5 +1,3 @@
-
-
 export function darkMode () {
   const themeButton = document.getElementById( "theme-button" )
 
