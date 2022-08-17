@@ -218,6 +218,23 @@ main{
   overflow: scroll;
 }
 
+.cart--products{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.products--item{
+  width: 98%;
+  display: flex;
+
+}
+.item--img{
+  width: 50px;
+}
 
 @keyframes load{
   0% {
@@ -294,8 +311,28 @@ a {
     text-decoration: none;
 }
 
+.card__info{
+  padding: 1rem;
+}
 
+.product--price{
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: text-top;
+}
 
+.product--stock{
+  display: inline-block;
+  font-size: .7rem;
+  vertical-align: unset;
+  font-weight: 500;
+}
+
+.product--name{
+  font-size: .9rem;
+  font-weight: 500;
+}
 
 .footer {
   background-color: var(--card-color);
