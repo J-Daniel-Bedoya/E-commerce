@@ -215,6 +215,23 @@ main{
   overflow: scroll;
 }
 
+.cart--products{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.products--item{
+  width: 98%;
+  display: flex;
+
+}
+.item--img{
+  width: 50px;
+}
 
 
 

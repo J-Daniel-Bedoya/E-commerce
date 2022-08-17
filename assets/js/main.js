@@ -6,28 +6,28 @@ const productosStore = [
     {
         id: 1, 
         nombre: "Hoodies", 
-        precio: "$ 14.00", 
+        precio: 14.00, 
         img: 'https://i.ibb.co/S7dPp5D/featured1.png',
-        selected: 0,
-        stock: "10",
+        categoria: 'hoodies',
+        stock: 10,
     },
                         
     {
         id: 2, 
         nombre: "Shirts", 
-        precio: "$ 15.00", 
+        precio: 24.00, 
         img: 'https://i.ibb.co/QNHZd4K/featured2.png',
-        selected: 0,
-        stock: "15",
+        categoria: 'hoodies',
+        stock: 15,
     },
                          
     {
         id: 3, 
         nombre: "Sweatshirts", 
-        precio: "$ 12.00", 
+        precio: 24.00, 
         img: 'https://i.ibb.co/R7CZn5n/featured3.png',
-        selected: 0,
-        stock: "20",
+        categoria: 'hoodies',
+        stock: 20,
     },
                    
 ];
@@ -55,7 +55,7 @@ const cardProductos= document.querySelector(".productos__card")
 function incorporarProductos(productosFet){
     let card = ``;
     productosFet.map(products => {
-        card += `<div class="cards">
+        card += `<div class="cards" id ='${products.id}' >
             <div class="card__img">
                 <img src=${products.img} class="img-products" alt="${products.nombre}">
             </div>
@@ -68,10 +68,77 @@ function incorporarProductos(productosFet){
         </div>`
     });
     cardProductos.innerHTML = card;
+    cartFunctionality()
 }
 
 
-//ESTE ES EL MENU, AGRADEZCO A QUIEN LO ORGANICE EN UN OMPONENTE PORQUE YO NO TENGO NI IDEA
+
+function cartFunctionality() {
+    const cartProducts =  document.getElementById('cart-products')
+    const cart = []
+    let productsHTML = ``
+    const btns = document.querySelectorAll( ".btn-add-cart" )
+    btns.forEach( button => {
+        button.addEventListener('click', e =>{
+            const id = parseInt(e.target.parentElement.parentElement.id)
+            const selectedProduct = productosStore.find( producto => producto.id === id)
+            console.log(selectedProduct);
+
+            if( cart.indexOf(selectedProduct)!== -1 ){
+                if(selectedProduct.unidades>=1 && selectedProduct.unidades!==selectedProduct.stock){
+                    selectedProduct.subtotal += selectedProduct.precio
+                    selectedProduct.unidades++
+                }else{
+                    window.alert("No contamos con suficiente stock");
+                }
+            }else{
+                cart.push( selectedProduct )
+                selectedProduct.unidades = 1
+                selectedProduct.subtotal = selectedProduct.precio
+            }
+            console.log(cart);
+
+            cart.forEach(element =>{
+                if (element.unidades!==1){
+                    document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
+                    document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
+                    }
+                    /*console.log(cartProducts.lastElementChild,document.getElementById(element.id));
+                    console.log(cartProducts.lastElementChild===document.getElementById(element.id));*/
+                    else{
+                        console.log(cartProducts.lastElementChild,document.getElementById(element.id))
+                        //console.log(cartProducts.lastElementChild===document.getElementById(element.id))
+                        /*if(cartProducts.lastElementChild===document.getElementById(element.id)){
+                            document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
+                            document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
+                        }else{*/
+                        productsHTML +=` 
+                        <div class="products--item" id="${element.id}">
+                        <div class="item--container-img">
+                        <img src=${element.img} class="item--img" alt="">
+                        </div>
+                        <div class="item--info">
+                        <h4>${element.nombre}</h4>
+                        <small>Stock: ${element.stock}|</small>
+                        <p>$${element.precio}</p>
+                        <p id="subtotal${element.id}">Subtotal: $${element.subtotal}.00</p>
+                        <div class="info--button">
+                        <button id='button-less'>-</button>
+                        <p id="units${element.id}">${element.unidades} units</p>
+                        <button id='button-plus'>+</button>
+                        </div>
+                        </div>
+                        <i class='bx bx-trash-alt'></i>          
+                        </div> `
+                        cartProducts.innerHTML = productsHTML
+                    
+                    }
+
+        })
+    })
+} )}
+
+//ESTE ES EL MENU, AGRADEZCO A QUIEN LO ORGANICE EN UN COMPONENTE PORQUE YO NO TENGO NI IDEA
 const menuOpen = document.getElementById("nav-toggle")
 const menu = document.getElementById("nav-menu")
 const menuClose= document.querySelector('.menu--close')
