@@ -215,6 +215,7 @@ main{
 }
 
 
+
 .items-carrito{
   background-color: #fff;
   width: 100px;
@@ -240,17 +241,6 @@ main{
   width: 50px;
 }
 
-@keyframes load{
-  0% {
-    transform: translateY( 0 );
-  }
-  50%{
-    transform: translateY( 10px );
-  }
-  100%{
-    transform: translateY( 0 );
-  }
-}
 
 .home__titulo {
   font-size: var(--biggest-font-size);
@@ -317,3 +307,14 @@ a {
 
 
 
+@keyframes load{
+  0% {
+    transform: translateY( 0 );
+  }
+  50%{
+    transform: translateY( 10px );
+  }
+  100%{
+    transform: translateY( 0 );
+  }
+}

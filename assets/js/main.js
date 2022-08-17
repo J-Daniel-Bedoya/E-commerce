@@ -77,7 +77,6 @@ function incorporarProductos(productosFet){
 function cartFunctionality() {
     let carts = document.querySelector("#cart-products");
     let cartProducts = document.createElement("div");
-    let cartTotal = document.createElement("div");
     let cart = []
     let productsHTML = "";
     const btns = document.querySelectorAll( ".btn-add-cart" )
@@ -121,14 +120,9 @@ function cartFunctionality() {
                     </div>
                     <i class='bx bx-trash-alt'></i>          
                     </div> `
-                    // cardProductos.appendChild(productsHTML)
-                    // console.log(cardProductos);
-                    let a = document.createElement("p");
-                    a.innerHTML = `Morfa`
-                    cartProducts.appendChild(a)
-                    console.log(cartProducts);
-                    carts.innerHTML = cardProductos
-                    console.log(productsHTML);
+                    cartProducts.innerHTML = productsHTML
+                    carts.appendChild(cartProducts)
+                    console.log(carts)
                     }else{
                         document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
                         document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
