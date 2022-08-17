@@ -216,9 +216,6 @@ main{
 }
 
 
-
-
-
 @keyframes load{
   0% {
     transform: translateY( 0 );
