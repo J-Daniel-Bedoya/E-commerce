@@ -78,7 +78,7 @@ function cartFunctionality() {
     let carts = document.querySelector("#cart-products");
     let cartProducts = document.createElement("div");
     let cart = []
-    let productsHTML = "";
+    let productsHTML = ``;
     const btns = document.querySelectorAll( ".btn-add-cart" )
     btns.forEach( button => {
         button.addEventListener('click', e =>{
@@ -98,36 +98,38 @@ function cartFunctionality() {
                 selectedProduct.unidades = 1
                 selectedProduct.subtotal = selectedProduct.precio
             }
-            console.log(cart);
-
-            cart.forEach(element =>{
-                if (element.unidades === 1){
-                    productsHTML +=` 
-                    <div class="products--item" id="${element.id}">
-                    <div class="item--container-img">
-                    <img src=${element.img} class="item--img" alt="">
-                    </div>
-                    <div class="item--info">
-                    <h4>${element.nombre}</h4>
-                    <small>Stock: ${element.quantity}|</small>
-                    <p>$${element.precio}</p>
-                    <p id="subtotal${element.id}">Subtotal: $${element.subtotal}.00</p>
-                    <div class="info--button">
-                    <button id='button-less'>-</button>
-                    <p id="units${element.id}">${element.unidades} units</p>
-                    <button id='button-plus'>+</button>
-                    </div>
-                    </div>
-                    <i class='bx bx-trash-alt'></i>          
-                    </div> `
-                    cartProducts.innerHTML = productsHTML
-                    carts.appendChild(cartProducts)
-                    console.log(carts)
-                    }else{
-                        document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
-                        document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
-                    }})
+            eventCard();
 
         })
     })
+}
+function eventCard(){
+    cart.forEach(element =>{
+        if (element.unidades === 1){
+            productsHTML +=` 
+            <div class="products--item" id="${element.id}">
+            <div class="item--container-img">
+            <img src=${element.img} class="item--img" alt="">
+            </div>
+            <div class="item--info">
+            <h4>${element.nombre}</h4>
+            <small>Stock: ${element.quantity}|</small>
+            <p>$${element.precio}</p>
+            <p id="subtotal${element.id}">Subtotal: $${element.subtotal}.00</p>
+            <div class="info--button">
+            <button id='button-less'>-</button>
+            <p id="units${element.id}">${element.unidades} units</p>
+            <button id='button-plus'>+</button>
+            </div>
+            </div>
+            <i class='bx bx-trash-alt'></i>          
+            </div> `
+            cartProducts.innerHTML = productsHTML
+            carts.appendChild(cartProducts)
+            console.log(carts)
+            }else{
+                document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
+                document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
+            }})
+            element.stopPropagation();
 }
