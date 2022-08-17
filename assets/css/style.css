@@ -227,3 +227,69 @@ main{
     transform: translateY( 0 );
   }
 }
+
+.home__titulo {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--mb-1);
+}
+h1, h2, h3, h4 {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+  margin: 0px;
+  transition: all 0.4s ease 0s;
+}
+
+body, button, input {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+.home__button {
+  display: flex;
+  align-items: center;
+  
+}
+.button {
+  display: inline-block;
+  background-color: var(--button-color);
+  color: rgb(255, 255, 255);
+  font-weight: var(--font-medium);
+  padding: 1.25rem 2rem;
+  transition: all 0.3s ease 0s;
+}
+button {
+  cursor: pointer;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  outline: none;
+}
+
+.home__button {
+  box-shadow: rgba(26, 26, 26, 0.2) 0px 12px 24px;
+
+}
+
+.button--small {
+  padding: 1rem 1.5rem;
+}
+
+.button--gray {
+  background-color: rgb(191, 191, 191);
+color: black;
+}
+  
+
+a {
+    text-decoration: none;
+}
+
+
+
