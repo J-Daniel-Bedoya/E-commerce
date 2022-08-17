@@ -4,27 +4,30 @@ import { scroll } from "./componets/scroll.js";
 
 const productosStore = [
     {
+        id: 1, 
         nombre: "Hoodies", 
         precio: "$ 14.00", 
         img: 'https://i.ibb.co/S7dPp5D/featured1.png',
+        selected: 0,
         stock: "10",
-        id: 1, 
     },
                         
     {
+        id: 2, 
         nombre: "Shirts", 
         precio: "$ 15.00", 
         img: 'https://i.ibb.co/QNHZd4K/featured2.png',
+        selected: 0,
         stock: "15",
-        id: 2, 
     },
                          
     {
+        id: 3, 
         nombre: "Sweatshirts", 
         precio: "$ 12.00", 
         img: 'https://i.ibb.co/R7CZn5n/featured3.png',
+        selected: 0,
         stock: "20",
-        id: 3, 
     },
                    
 ];
@@ -66,3 +69,5 @@ function incorporarProductos(productosFet){
     });
     cardProductos.innerHTML = card;
 }
+
+
