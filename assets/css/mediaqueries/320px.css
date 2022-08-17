@@ -30,7 +30,7 @@
     left: 0;
     background-color: rgba(144, 140, 140, 0.658);
   }
-  .cart{
+  /* .cart{
     width: 100%;
     height: 100%;
     max-width: 400px; 
@@ -39,7 +39,7 @@
     right: 0;
     background-color: var(--container-color);
     box-shadow: -4px 5px 10px rgb(147, 147, 147);
-  } 
+  }  */
   .productos{
     display: flex;
     flex-direction: column;

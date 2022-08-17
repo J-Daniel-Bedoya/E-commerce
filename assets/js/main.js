@@ -1,3 +1,7 @@
+import { darkMode } from "./componets/dark-mode.js";
+import { carrito } from "./componets/carrito.js";
+import { scroll } from "./componets/scroll.js";
+
 const productosStore = [
     {
         nombre: "Hoodies", 
@@ -26,9 +30,13 @@ const productosStore = [
 ];
 
 document.addEventListener( "DOMContentLoaded", () =>{
-    load()
-    icorporarProductos(productosStore);
-})
+       load()
+       incorporarProductos(productosStore);
+       darkMode();
+       carrito();
+       scroll();
+       productos();
+});
 
 /* =========== LOADER ========== */
 const loader = document.getElementById( "loader" )
@@ -38,82 +46,10 @@ function load () {
     }, 3000);
 }
 
-/* =========DARK MODE======== */
-const themeButton = document.getElementById( "theme-button" )
-
-themeButton.addEventListener( "click", () =>{
-    document.body.classList.toggle( "dark-theme" )
-
-    if( themeButton.classList.contains( "bx-moon" ) ){
-        themeButton.classList.replace( "bx-moon", "bx-sun" )
-    }else{
-        themeButton.classList.replace( "bx-sun", "bx-moon" )
-    }
-
-    if(document.body.classList.contains('dark-theme')){
-        localStorage.setItem('dark', 'true')
-    }else{
-        localStorage.setItem('dark', 'false')
-    }
-});
-if(localStorage.getItem('dark') == 'true'){
-    document.body.classList.add('dark-theme')
-    themeButton.classList.replace( "bx-moon", "bx-sun" )
-}else{
-    document.body.classList.remove('dark-theme')
-    themeButton.classList.replace( "bx-sun", "bx-moon" )
-}
-
-
-/*=======  CARRITO =========== */
-const cartOpen = document.getElementById( "cart-shop" )
-const cartClose = document.getElementById( "close-cart" )
-const cartContainer = document.getElementById( "cart-container" )
-
-cartOpen.addEventListener( "click", () => {
-    cartContainer.classList.remove( "hide" )
-})
-
-cartClose.addEventListener( "click", () => {
-    cartContainer.classList.add( "hide" )
-});
-
-
-
-/* ========SCROLL========= */
-const header = document.getElementById("header")
-const b1 = document.querySelector(".bxs1")
-const b2 = document.querySelector(".bxs2")
-const b3 = document.querySelector(".bxs3")
-const b4 = document.querySelector(".bxs4")
-
-window.addEventListener( "scroll", () =>{
-    // setTimeout(() => {
-        if( window.scrollY >= 50 ){
-            header.classList.add("scroll-header")
-            b1.classList.add("bxs1")
-            b2.classList.add("bxs2")
-            b3.classList.add("bxs3")
-            b4.classList.add("bxs4")
-        }else{
-            header.classList.remove("scroll-header")
-            b1.classList.remove("bxs1")
-            b2.classList.remove("bxs2")
-            b3.classList.remove("bxs3")
-            b4.classList.remove("bxs4")
-        }
-    // }, 4);
-})
-
-
-/* ==================== PRODUCTOS ==================== */
-
-
-
 
 const cardProductos= document.querySelector(".productos__card")
 
-function icorporarProductos(productosFet){
+function incorporarProductos(productosFet){
     let card = ``;
     productosFet.map(products => {
         card += `<div class="cards">
@@ -130,4 +66,3 @@ function icorporarProductos(productosFet){
     });
     cardProductos.innerHTML = card;
 }
-

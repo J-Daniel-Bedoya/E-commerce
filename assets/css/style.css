@@ -1,4 +1,4 @@
-@import url(./mediaqueries/320px.css);
+@import url("./mediaqueries/320px.css");
 
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
@@ -111,24 +111,7 @@ main{
   width: 130px;
   color: var(--title-color);
 }
-.bx{
-  color: var(--title-color);
-}
-.bxs{
-  color: #000;
-}
-.bxs1{
-  color: #fff;
-}
-.bxs2{
-  color: #fff;
-}
-.bxs3{
-  color: #000;
-}
-.bxs4{
-  color: #fff;
-}
+
 .nav--logo{
   width: 2.6rem;
   fill: var(--first-color);
@@ -171,6 +154,7 @@ main{
   display: flex;
   align-items: center;
   column-gap: 1rem;
+  color: var(--title-color);
 }
 
 
