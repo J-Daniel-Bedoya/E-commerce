@@ -16,6 +16,8 @@
   --body-color: hsl(206, 4%, 97%);
   --container-color: #fff;
   --border-color: hsl(0, 0%, 94%);
+  --barras-color: hsl(0, 0%, 13%);
+  
 
   /*========== Font and typography ==========*/
   --body-font: 'Roboto', sans-serif;
@@ -47,6 +49,7 @@ body.dark-theme{
   --body-color: hsl(249, 19%, 14%);
   --container-color: hsl(246, 16%, 12%);
   --border-color: hsl(0, 0%, 20%);
+  --barras-color: hsl(0, 0%, 77%); 
 }
 
 body{
@@ -228,12 +231,12 @@ main{
   }
 }
 
-.home__titulo {
+/* .home__titulo {
   font-size: var(--biggest-font-size);
   font-weight: var(--font-bold);
   margin-bottom: var(--mb-1);
-}
-h1, h2, h3, h4 {
+} */
+h2, h3, h4 {
   color: var(--title-color);
   font-weight: var(--font-medium);
 }
