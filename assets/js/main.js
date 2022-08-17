@@ -60,9 +60,9 @@ function incorporarProductos(productosFet){
                 <img src=${products.img} class="img-products" alt="${products.nombre}">
             </div>
             <div class="card__info">
-                <h2>$${products.precio}.00|</h2> 
-                <p>Stock: ${products.stock}</p>
-                <h3>${products.nombre}</h3>
+                <h2 class='product--price'>$${products.precio}.00</h2> 
+                <p class='product--stock'>| Stock: ${products.stock}</p>
+                <h3 class='product--name'>${products.nombre}</h3>
                 <button class="btn-add-cart" data-id="${products.id}">+</button>
             </div>
         </div>`
