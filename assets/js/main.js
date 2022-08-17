@@ -34,11 +34,12 @@ const productosStore = [
 
 document.addEventListener( "DOMContentLoaded", () =>{
        load()
-       incorporarProductos(productosStore);
+       agregarProductos(productosStore);
        darkMode();
        carrito();
        scroll();
        productos();
+       f();
 });
 
 /* =========== LOADER ========== */
@@ -52,9 +53,9 @@ function load () {
 
 const cardProductos= document.querySelector(".productos__card")
 
-function incorporarProductos(productosFet){
+function agregarProductos(productosFet){
     let card = ``;
-    productosFet.map(products => {
+    productosFet.forEach(products => {
         card += `<div class="cards">
             <div class="card__img">
                 <img src=${products.img} class="img-products" alt="${products.nombre}">
@@ -71,3 +72,26 @@ function incorporarProductos(productosFet){
 }
 
 
+
+const items = document.getElementById("cart");
+const btnItems = document.getElementsByClassName('.btn-add-cart');
+
+function f () {
+    btnItems.addEventListener("click", () => {
+        let agregarItem = '';
+        productosStore.forEach(product => {
+            agregarItem += `
+            <div class="${product.nombre} items-carrito">
+                <img src=${product.img} alt="${product.nombre}">
+                <h4>${product.nombre}</h4>
+                <p>Stock: ${product.stock}</p> <p>${product.precio}</p>
+                <h4>Subtotal: ${subTotal()}</h4>
+                <button>-</button>
+                <span>${contadorUnidades} units</span>
+                <button">+</button>
+                button>Delete</button>
+            </div>`
+        });
+        items.innerHTML = agregarItem;
+    });
+}

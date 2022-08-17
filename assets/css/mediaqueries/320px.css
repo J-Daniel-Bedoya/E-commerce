@@ -23,12 +23,11 @@
   } 
   
   .cart--container{
-    width: 100%;
+    width: 30%;
     height: 100%;
     position: fixed;
     top: 0;
-    left: 0;
-    background-color: rgba(144, 140, 140, 0.658);
+    right: 0;
   }
   .cart{
     width: 100%;
