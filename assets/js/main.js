@@ -76,18 +76,19 @@ function incorporarProductos(productosFet){
 function cartFunctionality() {
     const cartProducts =  document.getElementById('cart-products')
     const cart = []
+    const counter = document.getElementById('cart-counter')
+    counter.textContent = 0
     let productsHTML = ``
     const btns = document.querySelectorAll( ".btn-add-cart" )
     btns.forEach( button => {
         button.addEventListener('click', e =>{
             const id = parseInt(e.target.parentElement.parentElement.id)
             const selectedProduct = productosStore.find( producto => producto.id === id)
-            console.log(selectedProduct);
-
             if( cart.indexOf(selectedProduct)!== -1 ){
                 if(selectedProduct.unidades>=1 && selectedProduct.unidades!==selectedProduct.stock){
                     selectedProduct.subtotal += selectedProduct.precio
                     selectedProduct.unidades++
+                    counter.textContent = parseInt(counter.textContent)+1
                 }else{
                     window.alert("No contamos con suficiente stock");
                 }
@@ -95,25 +96,18 @@ function cartFunctionality() {
                 cart.push( selectedProduct )
                 selectedProduct.unidades = 1
                 selectedProduct.subtotal = selectedProduct.precio
+                counter.textContent = parseInt(counter.textContent)+1
             }
-            console.log(cart);
 
             cart.forEach(element =>{
+                const elementID = document.getElementById(element.id)
                 if (element.unidades!==1){
                     document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
                     document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
                     }
-                    /*console.log(cartProducts.lastElementChild,document.getElementById(element.id));
-                    console.log(cartProducts.lastElementChild===document.getElementById(element.id));*/
-                    else{
-                        console.log(cartProducts.lastElementChild,document.getElementById(element.id))
-                        //console.log(cartProducts.lastElementChild===document.getElementById(element.id))
-                        /*if(cartProducts.lastElementChild===document.getElementById(element.id)){
-                            document.getElementById(`subtotal${element.id}`).textContent=`Subtotal: $${element.subtotal}.00`
-                            document.getElementById(`units${element.id}`).textContent=`${element.unidades} units`
-                        }else{*/
-                        productsHTML +=` 
-                        <div class="products--item" id="${element.id}">
+                    else if (cartProducts.lastElementChild!==elementID && element.unidades===1){
+                        console.log(elementID.id)
+                        productsHTML +=`<div class="products--item" id="${element.id}">
                         <div class="item--container-img">
                         <img src=${element.img} class="item--img" alt="">
                         </div>
@@ -129,14 +123,16 @@ function cartFunctionality() {
                         </div>
                         </div>
                         <i class='bx bx-trash-alt'></i>          
-                        </div> `
+                        </div>`
                         cartProducts.innerHTML = productsHTML
-                    
                     }
+                })
 
+            
         })
     })
-} )}
+}
+        
 
 //ESTE ES EL MENU, AGRADEZCO A QUIEN LO ORGANICE EN UN COMPONENTE PORQUE YO NO TENGO NI IDEA
 const menuOpen = document.getElementById("nav-toggle")
