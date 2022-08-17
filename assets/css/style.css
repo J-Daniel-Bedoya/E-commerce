@@ -53,6 +53,7 @@ body{
   background-color: var(--body-color);
   font-family: var(--body-font);
   color: var(--text-color);
+  transition: .3s;
 }
 
 main{
