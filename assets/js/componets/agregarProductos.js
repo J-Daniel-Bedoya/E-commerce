@@ -37,7 +37,7 @@ export function agregarProductos () {
   const cardProductos= document.querySelector(".productos__card")
   const contenidoCarrito = document.getElementById("cart--products");
   const botonVaciar = document.getElementById("vaciarStoke");
-  const calcularTotal = document.getElementById("cart-counter");
+  const precioTotal = document.getElementById("precioTotalStock");
 
   let carrito = [];
   
@@ -92,37 +92,6 @@ export function agregarProductos () {
     mostrarCarrito();
 
   }
-  const deleteProduct= (ids) => {
-    const yaExiste = carrito.some((prod) => prod.id === ids);
-    if (yaExiste) {
-      const prod = carrito.map((prod) => {
-        if (prod.id === ids) {
-              prod.quantity--;
-        }
-      });
-    }else{
-      
-      const item = productosStock.find((prod) => prod.id === ids);
-      carrito.push(item);
-    }
-    mostrarCarrito();
-
-  }
-  // const btn = document.querySelector(".btn-add-cart")
-  // valor = 0;
-  // btn.addEventListener('click', () => {
-  //   valor++
-  //   calcularTotal.textContent = valor;
-  //   mostrarCarrito();
-  // })
-
-    const eliminarDelProducto = (idsProd) => {
-      const producto = carrito.find((e) => e.id === idsProd);
-      const index = carrito.indexOf(producto);
-      carrito.splice(index, 1);
-      mostrarCarrito();
-    
-    }
       
   const mostrarCarrito = () => {
       contenidoCarrito.innerHTML = "";
@@ -137,7 +106,7 @@ export function agregarProductos () {
           <div class="item--info">
             <h4>${prod.nombre}</h4>
             <small>Stock: ${prod.stock}|</small>
-            <p>$${prod.precio}</p>
+            <p>$${prod.precio}.00</p>
             <p id="subtotal${prod.id}">Subtotal: $${prod.precio}.00</p>
             <div class="info--button">
             <button onclick="eliminarDelProducto(${prod.quantity})" id='button-delete'>-</button>
@@ -149,24 +118,29 @@ export function agregarProductos () {
         </div> `
         contenidoCarrito.appendChild(contendorDiv);
 
+
         const subtotal1 = document.getElementById(`subtotal${prod.id}`);
         subtotal1.innerHTML = `Subtotal: $${prod.precio * prod.quantity}.00`;
 
-        const precioTotal = document.getElementById("precioTotalStock");
-        precioTotal.innerHTML = `Total: $${prod.precio * prod.quantity}.00`;
-      //   for (i in carrito) {
-      //     if (carrito[i].quantity > 0) {
-      //       const subtotal = document.getElementById(`subtotal${carrito[i].id}`);
-      //       subtotal.innerHTML = `Subtotal: $${carrito[i].subtotal}.00`;
-      //     }else{
-      //       const subtotal = document.getElementById(`subtotal${carrito[i].id}`);
-      //       subtotal.innerHTML = `Subtotal: $${carrito[i].subtotal}.00`;
-      //     }
-      
+        precioTotal.innerHTML = `Total: $${carrito.reduce((total, prod) => total + prod.precio * prod.quantity, 0)}.00`;
 
-      // calcularTotal.innerHTML = carrito[i].quantity;
-      // console.log(calcularTotal);
-      // }
+
+        let i = prod.id;
+        console.log(i);
+        const deleteProduct = document.getElementById(`button-delete`);
+        const units = document.getElementById(`units${prod.id}`);
+        deleteProduct.addEventListener("click", () => {
+          if (prod.quantity !== 0) {
+            let delte = prod.quantity--;
+            units.innerHTML = `${delte} units`;
+          } else {
+            deleteProduct.addEventListener("click", () => {
+              carrito.splice(prod, 1);
+                 
+              }
+            );
+          }
+        });
     
 
   });
