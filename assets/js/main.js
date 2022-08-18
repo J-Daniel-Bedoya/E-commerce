@@ -3,6 +3,7 @@ import { carrito } from "./componets/carrito.js";
 import { scroll } from "./componets/scroll.js";
 import { menu } from "./componets/menu.js";
 import { agregarProductos } from "./componets/agregarProductos.js";
+import { imgCarrito } from "./componets/imgCarrito.js";
 
 
 
@@ -13,6 +14,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
     scroll();
     menu();
     agregarProductos();
+    imgCarrito();
     // incorporarProductos(productosStock);
 });
 
