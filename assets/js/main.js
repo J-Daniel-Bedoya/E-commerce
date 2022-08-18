@@ -12,7 +12,6 @@ document.addEventListener( "DOMContentLoaded", () =>{
     carrito();
     scroll();
     menu();
-    agregarProductos();
     imgCarrito();
 });
 

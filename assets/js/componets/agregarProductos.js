@@ -7,9 +7,7 @@
         nombre: "Hoodies", 
         precio: 14.00, 
         img: 'https://i.ibb.co/S7dPp5D/featured1.png',
-        categoria: 'hoodies',
         stock: 10,
-        quantity: 1,
     },
                         
     {
@@ -17,9 +15,7 @@
         nombre: "Shirts", 
         precio: 24.00, 
         img: 'https://i.ibb.co/QNHZd4K/featured2.png',
-        categoria: 'shirts',
         stock: 15,
-        quantity: 1,
     },
                          
     {
@@ -27,10 +23,7 @@
         nombre: "Sweatshirts", 
         precio: 24.00, 
         img: 'https://i.ibb.co/R7CZn5n/featured3.png',
-        categoria: 'sweatshirts',
         stock: 20,
-        quantity: 1,
-
     },
                    
 ];
@@ -63,12 +56,12 @@ document.addEventListener( "DOMContentLoaded", () =>{
   
   function cartFunctionality() {
       const cardProductos =  document.getElementById('cart--products')
-      const cart = []
       const itemNumber = document.querySelector('#items-number')
-      const totalPrice = document.getElementById('total-price')
       const counter = document.getElementById('cart-counter')
-      counter.textContent = 0
       const btns = document.querySelectorAll( ".btn-add-cart" )
+      const totalPrice = document.getElementById('precioTotalStock')
+      const cart = []
+      counter.textContent = 0
       btns.forEach( button => {
           button.addEventListener('click', e =>{
               const id = parseInt(e.target.parentElement.parentElement.id)
@@ -92,28 +85,29 @@ document.addEventListener( "DOMContentLoaded", () =>{
   
               let productsHTML = ``
               cart.forEach(element =>{
-                          productsHTML +=`
-                          <div class="products--item" id="${element.id}">
-                              <div class="item- -container-img">
-                                  <img src=${element.img} class="item--img" alt="">
-                              </div>
-                              <div class="item--info title--carts">
-                                  <h4>${element.nombre}</h4>
-                                  <small class="stock--carts">Stock: ${element.stock}|</small>
-                                  <p class="price--carts">$${element.precio}</p>
-                                  <p id="subtotal${element.id}" class="subtotal--carts">Subtotal: $${element.subtotal}.00</p>
-                                  <div class="info--button">
-                                      <button class='button--less button--cart'>-</button>
-                                          <p id="units${element.id}" class="units--carts">${element.unidades} units</p>
-                                      <button class='button--plus button--cart'>+</button>
-                                  </div>
-                              </div>
-                              <i class='bx bx-trash-alt'></i>          
-                          </div>`
-                          cardProductos.innerHTML = productsHTML
-                          const totalPrice = document.getElementById('precioTotalStock')
-                          totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-                  })
+                productsHTML +=`
+                <div class="products--item" id="${element.id}">
+                  <div class="item- -container-img">
+                    <img src=${element.img} class="item--img" alt="">
+                  </div>
+                  <div class="item--info title--carts">
+                    <h4>${element.nombre}</h4>
+                    <small class="stock--carts">Stock: ${element.stock}|</small>
+                    <p class="price--carts">$${element.precio}</p>
+                    <p id="subtotal${element.id}" class="subtotal--carts">Subtotal: $${element.subtotal}.00</p>
+                    <div class="info--button">
+                      <button class='button--less button--cart'>-</button>
+                        <p id="units${element.id}" class="units--carts">${element.unidades} units</p>
+                      <button class='button--plus button--cart'>+</button>
+                      </div>
+                  </div>
+                    <i class='bx bx-trash-alt'></i>          
+                </div>`
+                cardProductos.innerHTML = productsHTML
+              })
+
+              totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+
               const trash = document.querySelectorAll('.bx-trash-alt')
               trash.forEach(trashButton=>{
                   trashButton.addEventListener('click', (e) =>{
@@ -124,6 +118,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
                       cardProductos.removeChild(element)
                       cart.splice(indice,1)
                       counter.textContent = parseInt(counter.textContent)-unidades
+                      totalPrice.textContent = `${totalPrice.textContent.replace(/\d+\.\d+/, cart.reduce((total, product) => total + product.subtotal, 0))}.00`
                       itemNumber.textContent = `${counter.textContent} items`
                   })
               })
@@ -143,6 +138,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
                           unidades.textContent = `${cart[indiceZ].unidades} units`
                           subtotal.textContent = `Subtotal: $${cart[indiceZ].subtotal}.00`
                           counter.textContent = parseInt(counter.textContent)+1
+                          totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
                           itemNumber.textContent = `${counter.textContent} items`
                       }
                   })
@@ -159,6 +155,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
                           cardProductos.removeChild(elementLess)
                           counter.textContent = parseInt(counter.textContent)-1
                           cart.splice(indiceY,1)
+                          totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
                           itemNumber.textContent = `${counter.textContent} items`
                       }else{
                           cart[indiceY].subtotal-=cart[indiceY].precio
@@ -166,6 +163,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
                           unidadesLess.textContent = `${cart[indiceY].unidades} units`
                           subtotalLess.textContent = `Subtotal: $${cart[indiceY].subtotal}.00`
                           counter.textContent = parseInt(counter.textContent)-1
+                          totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
                           itemNumber.textContent = `${counter.textContent} items`
                       }
                   })
