@@ -60,6 +60,8 @@ document.addEventListener( "DOMContentLoaded", () =>{
       const counter = document.getElementById('cart-counter')
       const btns = document.querySelectorAll( ".btn-add-cart" )
       const totalPrice = document.getElementById('precioTotalStock')
+      const vaciarCarrito = document.getElementById('vaciarStoke')
+      console.log(vaciarCarrito)
       const cart = []
       counter.textContent = 0
       btns.forEach( button => {
@@ -105,9 +107,16 @@ document.addEventListener( "DOMContentLoaded", () =>{
                 </div>`
                 cardProductos.innerHTML = productsHTML
               })
-
+              
               totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-
+              
+              vaciarCarrito.addEventListener('click', () =>{
+                cart.length = 0
+                cardProductos.innerHTML = ``
+                totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+                counter.textContent = 0
+                itemNumber.textContent = `${counter.textContent} items`
+              })
               const trash = document.querySelectorAll('.bx-trash-alt')
               trash.forEach(trashButton=>{
                   trashButton.addEventListener('click', (e) =>{
