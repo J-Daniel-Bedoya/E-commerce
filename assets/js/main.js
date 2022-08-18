@@ -15,7 +15,6 @@ document.addEventListener( "DOMContentLoaded", () =>{
     menu();
     agregarProductos();
     imgCarrito();
-    // incorporarProductos(productosStock);
 });
 
 /* =========== LOADER ========== */
