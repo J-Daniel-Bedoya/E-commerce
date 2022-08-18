@@ -56,9 +56,9 @@ export function agregarProductos () {
               <img src=${productos.img} class="img-products" alt="${productos.nombre}">
           </div>
           <div class="card__info">
-              <h2>${productos.precio}</h2> 
-              <p>Stock: ${productos.stock}</p>
-              <h3>${productos.nombre}</h3>
+              <h2 class='product--price'>$${productos.precio}.00</h2> 
+              <p class='product--stock'>|Stock: ${productos.stock}</p>
+              <h3 class='product--name'>${productos.nombre}</h3>
             </div>
           <button id="agregar${productos.id}" class="btn-add-cart">+</button>
       </div>`
