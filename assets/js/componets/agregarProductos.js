@@ -111,6 +111,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
                               <i class='bx bx-trash-alt'></i>          
                           </div>`
                           cardProductos.innerHTML = productsHTML
+                          const totalPrice = document.getElementById('precioTotalStock')
                           totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
                   })
               const trash = document.querySelectorAll('.bx-trash-alt')
