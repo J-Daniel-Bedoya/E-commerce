@@ -140,6 +140,11 @@ main{
   right: -100%;
   transition: right .2s linear;
 }
+
+.title-logo{
+  margin: 0;
+}
+
 .nav--menu__show{
   right: 0;
 }
