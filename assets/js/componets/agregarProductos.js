@@ -104,14 +104,14 @@ export function agregarProductos () {
             <img src=${prod.img} class="item--img" alt="">
           </div>
           <div class="item--info">
-            <h4>${prod.nombre}</h4>
-            <small>Stock: ${prod.stock}|</small>
-            <p>$${prod.precio}.00</p>
-            <p id="subtotal${prod.id}">Subtotal: $${prod.precio}.00</p>
+            <h4 class='title--carts'>${prod.nombre}</h4>
+            <small class='stock--carts'>Stock: ${prod.stock}|</small>
+            <p class='price--carts'>$${prod.precio}.00</p>
+            <p id="subtotal${prod.id}" class='subtotal--carts'>Subtotal: $${prod.precio}.00</p>
             <div class="info--button">
-            <button onclick="eliminarDelProducto(${prod.quantity})" id='button-delete'>-</button>
-              <p id="units${prod.id}">${prod.quantity} units</p>
-              <button onclick="agregarCarrito(${prod.id}) id='button-plus'>+</button>
+            <button onclick="eliminarDelProducto(${prod.quantity})" class=' button--cart button--less' id='button-delete'>--</button>
+              <p id="units${prod.id}" class='units--carts'>${prod.quantity} units</p>
+            <button onclick="agregarCarrito(${prod.id})" class='button--cart button--plus' id='button-plus'>+</button>
             </div>
           </div>
           <i class='bx bx-trash-alt'></i>          
