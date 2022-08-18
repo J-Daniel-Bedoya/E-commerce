@@ -6,8 +6,7 @@ export function carrito () {
 
   cartOpen.addEventListener( "click", () => {
       cartContainer.classList.remove( "hide" )
-  })
-
+    })
   cartClose.addEventListener( "click", () => {
       cartContainer.classList.add( "hide" )
   });
