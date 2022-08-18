@@ -1,28 +1,3 @@
-import { darkMode } from "./componets/dark-mode.js";
-import { carrito } from "./componets/carrito.js";
-import { scroll } from "./componets/scroll.js";
-import { menu } from "./componets/menu.js";
-// import { agregarProductos } from "./componets/agregarProductos.js";
-
-
-
-document.addEventListener( "DOMContentLoaded", () =>{
-    load()
-    darkMode();
-    carrito();
-    scroll();
-    menu();
-    // agregarProductos();
-    incorporarProductos(productosStock);
-});
-
-/* =========== LOADER ========== */
-const loader = document.getElementById( "loader" )
-function load () {
-    setTimeout(() => {
-        loader.classList.add( "hide" )
-    }, 3000);
-}
 
 
 const productosStock = [
@@ -76,6 +51,7 @@ function incorporarProductos(productosFet){
     cardProductos.innerHTML = card;
     cartFunctionality()
 }
+
 
 
 
@@ -138,21 +114,4 @@ function cartFunctionality() {
         })
     })
 }
-        
-
-// //ESTE ES EL MENU, AGRADEZCO A QUIEN LO ORGANICE EN UN COMPONENTE PORQUE YO NO TENGO NI IDEA
-// const menuOpen = document.getElementById("nav-toggle")
-// const menu = document.getElementById("nav-menu")
-// const menuClose= document.querySelector('.menu--close')
-// const navList = document.querySelector('.nav--list')
-// menuOpen.addEventListener( "click", () => {
-//     menu.classList.add( "nav--menu__show" )
-// })
-
-// menuClose.addEventListener( "click", () => {
-//     menu.classList.remove( "nav--menu__show" )
-// })
-// navList.addEventListener( "click", () => {
-//     menu.classList.remove( "nav--menu__show" )
-// })
-
+     
