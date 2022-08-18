@@ -1,6 +1,7 @@
-export function agregarProductos () {
 
-  const productosStock = [
+
+
+  const productosStore = [
     {
         id: 1, 
         nombre: "Hoodies", 
@@ -29,141 +30,147 @@ export function agregarProductos () {
         categoria: 'sweatshirts',
         stock: 20,
         quantity: 1,
+
     },
                    
 ];
-
+document.addEventListener( "DOMContentLoaded", () =>{
+    incorporarProductos(productosStore);
+} );
 
   const cardProductos= document.querySelector(".productos__card")
-  const contenidoCarrito = document.getElementById("cart--products");
-  const botonVaciar = document.getElementById("vaciarStoke");
-  const precioTotal = document.getElementById("precioTotalStock");
 
-  let carrito = [];
-  
-
-  botonVaciar.addEventListener("click", () => {
-    carrito.length = 0;
-    mostrarCarrito();
-  });
-
-
-  productosStock.forEach(productos => {
-      const card = document.createElement("div")
-      card.classList.add("carts")
-      card.innerHTML += `
-          <div class="card__img">
-              <img src=${productos.img} class="img-products" alt="${productos.nombre}">
-          </div>
-          <div class="card__info">
-              <h2 class='product--price'>$${productos.precio}.00</h2> 
-              <p class='product--stock'>|Stock: ${productos.stock}</p>
-              <h3 class='product--name'>${productos.nombre}</h3>
-            </div>
-          <button id="agregar${productos.id}" class="btn-add-cart">+</button>
-      </div>`
-      cardProductos.appendChild(card);
-      
-      const boton = document.getElementById(`agregar${productos.id}`)
-      boton.addEventListener("click", () => {
-        agreagarCarrito(productos.id)
+  function incorporarProductos(productosFet){
+      let card = ``;
+      productosFet.map(products => {
+          card += `<div class="cards" id ='${products.id}' >
+              <div class="card__img">
+                  <img src=${products.img} class="img-products" alt="${products.nombre}">
+              </div>
+              <div class="card__info">
+                  <h2 class='product--price'>$${products.precio}.00</h2> 
+                  <p class='product--stock'>| Stock: ${products.stock}</p>
+                  <h3 class='product--name'>${products.nombre}</h3>
+                  <button class="btn-add-cart" data-id="${products.id}">+</button>
+              </div>
+          </div>`
       });
-});
-
-
-  const agreagarCarrito = (ids) => {
-    const yaExiste = carrito.some((prod) => prod.id === ids);
-    if (yaExiste) {
-      const prod = carrito.map((prod) => {
-        if (prod.id === ids) {
-            let click = prod.quantity++;
-            if (prod.stock === click) {
-                window.alert("No contamos con suficiente stock");
-                prod.quantity--;
-            }
-            
-        }
-      });
-    }else{
-      
-      const item = productosStock.find((prod) => prod.id === ids);
-      carrito.push(item);
-    }
-    mostrarCarrito();
-
+      cardProductos.innerHTML = card;
+      cartFunctionality()
   }
-      
-  const mostrarCarrito = () => {
-      contenidoCarrito.innerHTML = "";
-      carrito.forEach(prod => {
-        const contendorDiv = document.createElement("div");
-        contendorDiv.classList.add("cart__item");
-        contendorDiv.innerHTML =  `
-        <div class="products--item" id="${prod.id}">
-          <div class="item--container-img">
-            <img src=${prod.img} class="item--img" alt="">
-          </div>
-          <div class="item--info">
-            <h4 class='title--carts'>${prod.nombre}</h4>
-            <small class='stock--carts'>Stock: ${prod.stock}|</small>
-            <p class='price--carts'>$${prod.precio}.00</p>
-            <p id="subtotal${prod.id}" class='subtotal--carts'>Subtotal: $${prod.precio}.00</p>
-            <div class="info--button">
-            <button onclick="eliminarDelProducto(${prod.quantity})" class=' button--cart button--less' id='button-delete'>--</button>
-              <p id="units${prod.id}" class='units--carts'>${prod.quantity} units</p>
-            <button onclick="agregarCarrito(${prod.id})" class='button--cart button--plus' id='button-plus'>+</button>
-            </div>
-          </div>
-          <i class='bx bx-trash-alt'></i>          
-        </div> `
-        contenidoCarrito.appendChild(contendorDiv);
-
-
-        const subtotal1 = document.getElementById(`subtotal${prod.id}`);
-        subtotal1.innerHTML = `Subtotal: $${prod.precio * prod.quantity}.00`;
-
-        precioTotal.innerHTML = `Total: $${carrito.reduce((total, prod) => total + prod.precio * prod.quantity, 0)}.00`;
-
-
-        let i = prod.id;
-        console.log(i);
-        const deleteProduct = document.getElementById(`button-delete`);
-        const units = document.getElementById(`units${prod.id}`);
-        deleteProduct.addEventListener("click", () => {
-          if (prod.quantity !== 0) {
-            let delte = prod.quantity--;
-            units.innerHTML = `${delte} units`;
-          } else {
-            deleteProduct.addEventListener("click", () => {
-              carrito.splice(prod, 1);
-                 
+  
+  
+  
+  function cartFunctionality() {
+      const cardProductos =  document.getElementById('cart--products')
+      const cart = []
+      const itemNumber = document.querySelector('#items-number')
+      const totalPrice = document.getElementById('total-price')
+      const counter = document.getElementById('cart-counter')
+      counter.textContent = 0
+      const btns = document.querySelectorAll( ".btn-add-cart" )
+      btns.forEach( button => {
+          button.addEventListener('click', e =>{
+              const id = parseInt(e.target.parentElement.parentElement.id)
+              const selectedProduct = productosStore.find( producto => producto.id === id)
+              if( cart.indexOf(selectedProduct)!== -1){
+                  if(selectedProduct.unidades>=1 && selectedProduct.unidades!==selectedProduct.stock){
+                      selectedProduct.subtotal += selectedProduct.precio
+                      selectedProduct.unidades++
+                      counter.textContent = parseInt(counter.textContent)+1
+                      itemNumber.textContent = `${counter.textContent} items`
+                  }else{
+                      window.alert("No contamos con suficiente stock");
+                  }
+              }else{
+                  cart.push( selectedProduct )
+                  selectedProduct.unidades = 1
+                  selectedProduct.subtotal = selectedProduct.precio
+                  counter.textContent = parseInt(counter.textContent)+1
+                  itemNumber.textContent = `${counter.textContent} items`
               }
-            );
-          }
-        });
-    
-
-  });
-}
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+              let productsHTML = ``
+              cart.forEach(element =>{
+                          productsHTML +=`
+                          <div class="products--item" id="${element.id}">
+                              <div class="item- -container-img">
+                                  <img src=${element.img} class="item--img" alt="">
+                              </div>
+                              <div class="item--info title--carts">
+                                  <h4>${element.nombre}</h4>
+                                  <small class="stock--carts">Stock: ${element.stock}|</small>
+                                  <p class="price--carts">$${element.precio}</p>
+                                  <p id="subtotal${element.id}" class="subtotal--carts">Subtotal: $${element.subtotal}.00</p>
+                                  <div class="info--button">
+                                      <button class='button--less button--cart'>-</button>
+                                          <p id="units${element.id}" class="units--carts">${element.unidades} units</p>
+                                      <button class='button--plus button--cart'>+</button>
+                                  </div>
+                              </div>
+                              <i class='bx bx-trash-alt'></i>          
+                          </div>`
+                          cardProductos.innerHTML = productsHTML
+                          totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+                  })
+              const trash = document.querySelectorAll('.bx-trash-alt')
+              trash.forEach(trashButton=>{
+                  trashButton.addEventListener('click', (e) =>{
+                      const element = e.target.parentElement
+                      const x = cart.find( producto => producto.id === parseInt(element.id))
+                      const indice = cart.indexOf(x)
+                      const unidades = cart[indice].unidades
+                      cardProductos.removeChild(element)
+                      cart.splice(indice,1)
+                      counter.textContent = parseInt(counter.textContent)-unidades
+                      itemNumber.textContent = `${counter.textContent} items`
+                  })
+              })
+              const plus = document.querySelectorAll('.button--plus')
+              plus.forEach(plusButton=>{
+                  plusButton.addEventListener('click',e=>{
+                      const elementPlus = e.target.parentElement.parentElement.parentElement
+                      const z = cart.find( producto => producto.id === parseInt(elementPlus.id))
+                      const indiceZ = cart.indexOf(z)
+                      const subtotal = document.getElementById(`subtotal${elementPlus.id}`)
+                      const unidades = document.getElementById(`units${elementPlus.id}`)
+                      if(cart[indiceZ].unidades===cart[indiceZ].stock){
+                          window.alert("No contamos con suficiente stock");
+                      }else{
+                          cart[indiceZ].subtotal+=cart[indiceZ].precio
+                          cart[indiceZ].unidades++
+                          unidades.textContent = `${cart[indiceZ].unidades} units`
+                          subtotal.textContent = `Subtotal: $${cart[indiceZ].subtotal}.00`
+                          counter.textContent = parseInt(counter.textContent)+1
+                          itemNumber.textContent = `${counter.textContent} items`
+                      }
+                  })
+              })
+              const less = document.querySelectorAll('.button--less')
+              less.forEach(plusLess=>{
+                  plusLess.addEventListener('click',e=>{
+                      const elementLess = e.target.parentElement.parentElement.parentElement
+                      const y = cart.find( producto => producto.id === parseInt(elementLess.id))
+                      const indiceY = cart.indexOf(y)
+                      const subtotalLess = document.getElementById(`subtotal${elementLess.id}`)
+                      const unidadesLess = document.getElementById(`units${elementLess.id}`)
+                      if(cart[indiceY].unidades===1){
+                          cardProductos.removeChild(elementLess)
+                          counter.textContent = parseInt(counter.textContent)-1
+                          cart.splice(indiceY,1)
+                          itemNumber.textContent = `${counter.textContent} items`
+                      }else{
+                          cart[indiceY].subtotal-=cart[indiceY].precio
+                          cart[indiceY].unidades--
+                          unidadesLess.textContent = `${cart[indiceY].unidades} units`
+                          subtotalLess.textContent = `Subtotal: $${cart[indiceY].subtotal}.00`
+                          counter.textContent = parseInt(counter.textContent)-1
+                          itemNumber.textContent = `${counter.textContent} items`
+                      }
+                  })
+              })
+          })
+      })
   }
+  
+  

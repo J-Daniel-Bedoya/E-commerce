@@ -2,7 +2,6 @@ import { darkMode } from "./componets/dark-mode.js";
 import { carrito } from "./componets/carrito.js";
 import { scroll } from "./componets/scroll.js";
 import { menu } from "./componets/menu.js";
-import { agregarProductos } from "./componets/agregarProductos.js";
 import { imgCarrito } from "./componets/imgCarrito.js";
 
 
@@ -24,7 +23,5 @@ function load () {
         loader.classList.add( "hide" )
     }, 3000);
 }
-
-
 
 
