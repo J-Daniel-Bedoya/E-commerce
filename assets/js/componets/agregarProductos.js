@@ -66,6 +66,26 @@ document.addEventListener( "DOMContentLoaded", () =>{
       const vaciarCarrito = document.getElementById('vaciarStoke')
       const cart = []
       counter.textContent = 0
+
+       /*********** CHECKOUT ***************/
+       vaciarCarrito.addEventListener('click', () =>{
+        cart.map(e=> {
+            const indexProduct = productosStore.indexOf(e)
+            const stockAvailable = productosStore[indexProduct].stock
+            if(stockAvailable<=0){
+                window.alert('no tenemos suficiente stock')
+            }else{
+            productosStore[indexProduct].stock-=e.unidades
+            }
+        })
+        cart.length = 0
+        cardProductos.innerHTML = ``
+        /***count, subtotal & total items*** */
+        totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+        counter.textContent = 0
+        itemNumber.textContent = `${counter.textContent} items`
+        })
+
       btns.forEach( button => {
           button.addEventListener('click', e =>{
               const id = parseInt(e.target.parentElement.parentElement.id)
@@ -86,9 +106,14 @@ document.addEventListener( "DOMContentLoaded", () =>{
                   counter.textContent = parseInt(counter.textContent)+1
                   itemNumber.textContent = `${counter.textContent} items`
               }
-  
+        
               let productsHTML = ``
               cart.forEach(element =>{
+                const i = productosStore.indexOf(element)
+                const iStock = productosStore[i].stock
+                if(iStock<=0){
+                    window.alert('no tenemos suficiente stock')
+                }else{
                 productsHTML +=`
                 <div class="products--item" id="${element.id}">
                   <div class="item- -container-img">
@@ -102,17 +127,18 @@ document.addEventListener( "DOMContentLoaded", () =>{
                     <div class="info--button">
                       <button class='button--less button--cart'>-</button>
                         <p id="units${element.id}" class="units--carts">${element.unidades} units</p>
-                      <button class='button--plus button--cart'>+</button>
+                        <button class='button--plus button--cart'>+</button>
                       </div>
-                  </div>
+                      </div>
                     <i class='bx bx-trash-alt'></i>          
                 </div>`
                 cardProductos.innerHTML = productsHTML
 
 
+
                 localStorage.setItem('carrito', JSON.stringify(cart))
             
-            })
+            }
               
               totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
               
@@ -125,7 +151,10 @@ document.addEventListener( "DOMContentLoaded", () =>{
               })
 
 
-              const trash = document.querySelectorAll('.bx-trash-alt')
+              
+            totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+
+            const trash = document.querySelectorAll('.bx-trash-alt')
               trash.forEach(trashButton=>{
                   trashButton.addEventListener('click', (e) =>{
                       const element = e.target.parentElement
@@ -187,21 +216,21 @@ document.addEventListener( "DOMContentLoaded", () =>{
               })
           })
       })
-  }
+  })
   
 
 
-  function busquedaProd () {
+//   function busquedaProd () {
 
-    const busquedaShowAll = document.getElementById( "producto__linea-1" )
-    const busquedaHoodies = document.getElementById( "producto__linea-2" )
-    const busquedaShirts = document.getElementById( "producto__linea-3" )
-    const busquedaSweatshirts = document.getElementById( "producto__linea-4" )
+//     const busquedaShowAll = document.getElementById( "producto__linea-1" )
+//     const busquedaHoodies = document.getElementById( "producto__linea-2" )
+//     const busquedaShirts = document.getElementById( "producto__linea-3" )
+//     const busquedaSweatshirts = document.getElementById( "producto__linea-4" )
   
   
-    busquedaShowAll.addEventListener( "click", () => {
+//     busquedaShowAll.addEventListener( "click", () => {
       
   
   
-  })
-}
+//   })
+  }
