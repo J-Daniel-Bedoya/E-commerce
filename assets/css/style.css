@@ -267,8 +267,12 @@ main{
   width: 65px;
   padding: .2rem;
   border: 1px solid var(--border-color);
+  cursor: pointer;
 }
 
+.img-products:hover{
+  transform: translateY(0.2);
+}
 .title--carts{
   margin: 0;
   font-size: 1rem;

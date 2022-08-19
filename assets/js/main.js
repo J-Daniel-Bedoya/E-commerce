@@ -3,6 +3,7 @@ import { carrito } from "./componets/carrito.js";
 import { scroll } from "./componets/scroll.js";
 import { menu } from "./componets/menu.js";
 import { imgCarrito } from "./componets/imgCarrito.js";
+// import { busquedaProd } from "./componets/busquedaProd.js";
 
 
 
@@ -13,6 +14,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
     scroll();
     menu();
     imgCarrito();
+    // busquedaProd();
 });
 
 /* =========== LOADER ========== */

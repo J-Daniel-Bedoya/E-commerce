@@ -29,7 +29,10 @@
 ];
 document.addEventListener( "DOMContentLoaded", () =>{
     incorporarProductos(productosStore);
-} );
+    const storage = JSON.parse(localStorage.getItem('carrito'));
+    console.log(storage);
+});
+
 
   const cardProductos= document.querySelector(".productos__card")
 
@@ -61,7 +64,6 @@ document.addEventListener( "DOMContentLoaded", () =>{
       const btns = document.querySelectorAll( ".btn-add-cart" )
       const totalPrice = document.getElementById('precioTotalStock')
       const vaciarCarrito = document.getElementById('vaciarStoke')
-      console.log(vaciarCarrito)
       const cart = []
       counter.textContent = 0
       btns.forEach( button => {
@@ -106,7 +108,11 @@ document.addEventListener( "DOMContentLoaded", () =>{
                     <i class='bx bx-trash-alt'></i>          
                 </div>`
                 cardProductos.innerHTML = productsHTML
-              })
+
+
+                localStorage.setItem('carrito', JSON.stringify(cart))
+            
+            })
               
               totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
               
@@ -117,6 +123,8 @@ document.addEventListener( "DOMContentLoaded", () =>{
                 counter.textContent = 0
                 itemNumber.textContent = `${counter.textContent} items`
               })
+
+
               const trash = document.querySelectorAll('.bx-trash-alt')
               trash.forEach(trashButton=>{
                   trashButton.addEventListener('click', (e) =>{
@@ -181,4 +189,19 @@ document.addEventListener( "DOMContentLoaded", () =>{
       })
   }
   
+
+
+  function busquedaProd () {
+
+    const busquedaShowAll = document.getElementById( "producto__linea-1" )
+    const busquedaHoodies = document.getElementById( "producto__linea-2" )
+    const busquedaShirts = document.getElementById( "producto__linea-3" )
+    const busquedaSweatshirts = document.getElementById( "producto__linea-4" )
   
+  
+    busquedaShowAll.addEventListener( "click", () => {
+      
+  
+  
+  })
+}
