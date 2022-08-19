@@ -75,7 +75,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
             if(stockAvailable<=0){
                 window.alert('no tenemos suficiente stock')
             }else{
-            productosStore[indexProduct].stock-=e.unidades
+                productosStore[indexProduct].stock-=e.unidades
             }
         })
         cart.length = 0
@@ -86,10 +86,12 @@ document.addEventListener( "DOMContentLoaded", () =>{
         itemNumber.textContent = `${counter.textContent} items`
         })
 
+
       btns.forEach( button => {
           button.addEventListener('click', e =>{
               const id = parseInt(e.target.parentElement.parentElement.id)
               const selectedProduct = productosStore.find( producto => producto.id === id)
+              const elelegido = productosStore.indexOf(selectedProduct)
               if( cart.indexOf(selectedProduct)!== -1){
                   if(selectedProduct.unidades>=1 && selectedProduct.unidades!==selectedProduct.stock){
                       selectedProduct.subtotal += selectedProduct.precio
@@ -100,19 +102,22 @@ document.addEventListener( "DOMContentLoaded", () =>{
                       window.alert("No contamos con suficiente stock");
                   }
               }else{
+                if(productosStore[elelegido].stock>0){
                   cart.push( selectedProduct )
                   selectedProduct.unidades = 1
                   selectedProduct.subtotal = selectedProduct.precio
                   counter.textContent = parseInt(counter.textContent)+1
                   itemNumber.textContent = `${counter.textContent} items`
+                }else{
+                    window.alert("No contamos con suficiente stock");
+                }
               }
-        
+            
+              let a = 0
               let productsHTML = ``
               cart.forEach(element =>{
-                const i = productosStore.indexOf(element)
-                const iStock = productosStore[i].stock
-                if(iStock<=0){
-                    window.alert('no tenemos suficiente stock')
+                if(productosStore[elelegido].stock<=0){
+                    console.log(cart);
                 }else{
                 productsHTML +=`
                 <div class="products--item" id="${element.id}">
