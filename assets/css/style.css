@@ -19,6 +19,7 @@
   --container-color: #fff;
   --border-color: hsl(0, 0%, 94%);
   --barras-color: hsl(0, 0%, 13%);
+  --box--color: rgba(151, 149, 149, 0.57);
   
 
   /*========== Font and typography ==========*/
@@ -51,6 +52,7 @@ body.dark-theme{
   --container-color: hsl(246, 16%, 12%);
   --border-color: hsl(0, 0%, 20%);
   --barras-color: hsl(0, 0%, 77%); 
+  --box--color: rgba(60, 57, 57, 0.763);
 }
 
 body{
@@ -340,6 +342,8 @@ body, button, input {
 .home__button {
   display: flex;
   align-items: center;
+  box-shadow: 5px 2px 15px var(--box--color);
+  width: 293px;
   
 }
 .button {
@@ -352,16 +356,16 @@ body, button, input {
 }
 button {
   cursor: pointer;
-  border-width: initial;
-  border-style: none;
-  border-color: initial;
-  border-image: initial;
-  outline: none;
+  /* border-width: initial; */
+  /* border-style: none; */
+  /* border-color: initial; */
+  /* border-image: initial; */
+  /* outline: none; */
 }
 
-.home__button {
-  box-shadow: rgba(26, 26, 26, 0.2) 0px 12px 24px;
-
+ .button__black {
+  background-color: #1A1B23;
+  color: #fff;
 }
 
 .button--small {
@@ -369,9 +373,9 @@ button {
 }
 
 .button--gray {
-  background-color: rgb(191, 191, 191);
+  background-color: #BFBFBF;
   color: black;
-}
+} 
   
 
 a {
@@ -491,8 +495,33 @@ ul {
   row-gap: 0.75rem;
 
 }
+.productos__container{
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid transparent;
+  color: var(--body-color);
+  display: flex;
+  
+}
+.productos__card{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: center;
+  
+}
 
+.productos__filtrados{
+  display: flex;
 
+}
+.productos__elemento{
+  background-color: transparent;
+  width: 200px;
+}
 
 .img-carrito{
   width: 100%;

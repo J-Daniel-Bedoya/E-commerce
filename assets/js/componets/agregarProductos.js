@@ -1,6 +1,4 @@
 
-
-
   const productosStore = [
     {
         id: 1, 
@@ -15,7 +13,7 @@
         nombre: "Shirts", 
         precio: 24.00, 
         img: 'https://i.ibb.co/QNHZd4K/featured2.png',
-        stock: 2,
+        stock: 6,
     },
                          
     {
@@ -27,12 +25,25 @@
     },
                    
 ];
-document.addEventListener( "DOMContentLoaded", () =>{
-    incorporarProductos(productosStore);
-    const storage = JSON.parse(localStorage.getItem('carrito'));
-    console.log(storage);
-});
+localStorage.setItem('productos', JSON.stringify(productosStore));
 
+
+document.addEventListener( "DOMContentLoaded", () =>{
+    // let cardStockDesdeLocaltorage = JSON.parse(localStorage.getItem('card'));
+    let productosStack = JSON.parse(localStorage.getItem('productos'));
+    let cardProdutosLocalStorage = JSON.parse(localStorage.getItem('carrito'));
+    incorporarProductos(productosStack);
+    // const storage = JSON.parse(localStorage.getItem('carrito'));
+    // console.log(storage);
+
+    console.log(cardProdutosLocalStorage);
+});
+// incorporarProductos(cardStockDesdeLocaltorage);
+// let carritoDesdeLocalstorage = JSON.parse(localStorage.getItem('carrito'));
+// let carritoMantieneStock = Object.values(carritoDesdeLocalstorage);
+// carritoMantieneStock.map(product => {
+//     cartFunctionality ({...product});
+// });
 
   const cardProductos= document.querySelector(".productos__card")
 
@@ -52,12 +63,13 @@ document.addEventListener( "DOMContentLoaded", () =>{
           </div>`
       });
       cardProductos.innerHTML = card;
+      localStorage.setItem('card', JSON.stringify(card));
       cartFunctionality()
   }
   
   
   
-  function cartFunctionality() {
+  function cartFunctionality(itemCarrito) {
       const cardProductos =  document.getElementById('cart--products')
       const itemNumber = document.querySelector('#items-number')
       const counter = document.getElementById('cart-counter')
@@ -86,9 +98,12 @@ document.addEventListener( "DOMContentLoaded", () =>{
         itemNumber.textContent = `${counter.textContent} items`
         })
 
-
-      btns.forEach( button => {
-          button.addEventListener('click', e =>{
+        // let s = itemCarrito;
+        // let as = itemCarrito.unidades
+        // console.log(as)
+        // console.log(s)
+        btns.forEach( button => {
+            button.addEventListener('click', e =>{
               const id = parseInt(e.target.parentElement.parentElement.id)
               const selectedProduct = productosStore.find( producto => producto.id === id)
               const elelegido = productosStore.indexOf(selectedProduct)
@@ -96,7 +111,14 @@ document.addEventListener( "DOMContentLoaded", () =>{
                   if(selectedProduct.unidades>=1 && selectedProduct.unidades!==selectedProduct.stock){
                       selectedProduct.subtotal += selectedProduct.precio
                       selectedProduct.unidades++
-                      counter.textContent = parseInt(counter.textContent)+1
+
+                    //   if (itemCarrito.unidades !== 0){
+                    //     //   counter.textContent = parseInt(counter.textContent)+
+                    //       counter.textContent = parseInt(counter.textContent)+1
+                    //     }else{
+                            counter.textContent = parseInt(counter.textContent)+1
+                        // }
+                        
                       itemNumber.textContent = `${counter.textContent} items`
                   }else{
                       window.alert("No contamos con suficiente stock");
@@ -117,7 +139,7 @@ document.addEventListener( "DOMContentLoaded", () =>{
               let productsHTML = ``
               cart.forEach(element =>{
                 if(productosStore[elelegido].stock<=0){
-                    console.log(cart);
+                    // console.log(cart);
                 }else{
                 productsHTML +=`
                 <div class="products--item" id="${element.id}">
@@ -139,21 +161,11 @@ document.addEventListener( "DOMContentLoaded", () =>{
                 </div>`
                 cardProductos.innerHTML = productsHTML
 
+                localStorage.setItem('carrito', JSON.stringify(productsHTML));
 
 
-                localStorage.setItem('carrito', JSON.stringify(cart))
-            
+                
             }
-              
-            //   totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-              
-            //   vaciarCarrito.addEventListener('click', () =>{
-            //     cart.length = 0
-            //     cardProductos.innerHTML = ``
-            //     totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-            //     counter.textContent = 0
-            //     itemNumber.textContent = `${counter.textContent} items`
-            //   })
 
 
               
@@ -238,4 +250,4 @@ document.addEventListener( "DOMContentLoaded", () =>{
   
   
 //   })
-  }
+}
