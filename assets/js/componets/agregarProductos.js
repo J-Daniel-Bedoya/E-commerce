@@ -7,7 +7,7 @@
         nombre: "Hoodies", 
         precio: 14.00, 
         img: 'https://i.ibb.co/S7dPp5D/featured1.png',
-        stock: 10,
+        stock: 3 ,
     },
                         
     {
@@ -15,7 +15,7 @@
         nombre: "Shirts", 
         precio: 24.00, 
         img: 'https://i.ibb.co/QNHZd4K/featured2.png',
-        stock: 15,
+        stock: 2,
     },
                          
     {
@@ -23,7 +23,7 @@
         nombre: "Sweatshirts", 
         precio: 24.00, 
         img: 'https://i.ibb.co/R7CZn5n/featured3.png',
-        stock: 20,
+        stock: 5,
     },
                    
 ];
@@ -140,15 +140,15 @@ document.addEventListener( "DOMContentLoaded", () =>{
             
             }
               
-              totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+            //   totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
               
-              vaciarCarrito.addEventListener('click', () =>{
-                cart.length = 0
-                cardProductos.innerHTML = ``
-                totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-                counter.textContent = 0
-                itemNumber.textContent = `${counter.textContent} items`
-              })
+            //   vaciarCarrito.addEventListener('click', () =>{
+            //     cart.length = 0
+            //     cardProductos.innerHTML = ``
+            //     totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+            //     counter.textContent = 0
+            //     itemNumber.textContent = `${counter.textContent} items`
+            //   })
 
 
               
