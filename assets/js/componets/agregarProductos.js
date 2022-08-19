@@ -60,10 +60,28 @@ document.addEventListener( "DOMContentLoaded", () =>{
       const counter = document.getElementById('cart-counter')
       const btns = document.querySelectorAll( ".btn-add-cart" )
       const totalPrice = document.getElementById('precioTotalStock')
-      const vaciarCarrito = document.getElementById('vaciarStoke')
-      console.log(vaciarCarrito)
       const cart = []
       counter.textContent = 0
+       /*********** CHECKOUT ***************/
+       const vaciarCarrito = document.getElementById('vaciarStoke')
+       vaciarCarrito.addEventListener('click', () =>{
+        cart.map(e=> {
+            const indexProduct = productosStore.indexOf(e)
+            const stockAvailable = productosStore[indexProduct].stock
+            if(stockAvailable<=0){
+                window.alert('no tenemos suficiente stock')
+            }else{
+            productosStore[indexProduct].stock-=e.unidades
+            }
+        })
+        cart.length = 0
+        cardProductos.innerHTML = ``
+        /***count, subtotal & total items*** */
+        totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
+        counter.textContent = 0
+        itemNumber.textContent = `${counter.textContent} items`
+        })
+
       btns.forEach( button => {
           button.addEventListener('click', e =>{
               const id = parseInt(e.target.parentElement.parentElement.id)
@@ -84,9 +102,14 @@ document.addEventListener( "DOMContentLoaded", () =>{
                   counter.textContent = parseInt(counter.textContent)+1
                   itemNumber.textContent = `${counter.textContent} items`
               }
-  
+        
               let productsHTML = ``
               cart.forEach(element =>{
+                const i = productosStore.indexOf(element)
+                const iStock = productosStore[i].stock
+                if(iStock<=0){
+                    window.alert('no tenemos suficiente stock')
+                }else{
                 productsHTML +=`
                 <div class="products--item" id="${element.id}">
                   <div class="item- -container-img">
@@ -100,24 +123,18 @@ document.addEventListener( "DOMContentLoaded", () =>{
                     <div class="info--button">
                       <button class='button--less button--cart'>-</button>
                         <p id="units${element.id}" class="units--carts">${element.unidades} units</p>
-                      <button class='button--plus button--cart'>+</button>
+                        <button class='button--plus button--cart'>+</button>
                       </div>
-                  </div>
+                      </div>
                     <i class='bx bx-trash-alt'></i>          
                 </div>`
                 cardProductos.innerHTML = productsHTML
+                }
               })
               
               totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-              
-              vaciarCarrito.addEventListener('click', () =>{
-                cart.length = 0
-                cardProductos.innerHTML = ``
-                totalPrice.textContent = `Total: $${cart.reduce((total, product) => total + product.subtotal, 0)}.00`
-                counter.textContent = 0
-                itemNumber.textContent = `${counter.textContent} items`
-              })
-              const trash = document.querySelectorAll('.bx-trash-alt')
+
+            const trash = document.querySelectorAll('.bx-trash-alt')
               trash.forEach(trashButton=>{
                   trashButton.addEventListener('click', (e) =>{
                       const element = e.target.parentElement
